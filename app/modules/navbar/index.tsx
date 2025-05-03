@@ -38,7 +38,7 @@ import {
           <NavbarToggle />
         </div> */}
         <NavbarCollapse>
-          <NavbarLink href="#">Projetos</NavbarLink>
+          <NavbarLink href="projects">Projetos</NavbarLink>
           <NavbarLink href="#">Reembolsos</NavbarLink>
           <NavbarLink href="#">Usuários</NavbarLink>
           <NavbarLink href="#">Logout</NavbarLink>
