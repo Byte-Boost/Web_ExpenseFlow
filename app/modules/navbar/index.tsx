@@ -15,7 +15,7 @@ import {
     return (
       <Navbar fluid rounded>
         <NavbarBrand>
-          <img src={"favicon.png"} className="mr-3 h-6 sm:h-9" alt="ExpenseFlow Logo" />
+          <img src={"/favicon.png"} className="mr-3 h-6 sm:h-9" alt="ExpenseFlow Logo" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Expense Flow</span>
         </NavbarBrand>
         {/* <div className="flex md">
@@ -38,7 +38,7 @@ import {
           <NavbarToggle />
         </div> */}
         <NavbarCollapse>
-          <NavbarLink href="projects">Projetos</NavbarLink>
+          <NavbarLink href="/projects">Projetos</NavbarLink>
           <NavbarLink href="#">Reembolsos</NavbarLink>
           <NavbarLink href="#">Usuários</NavbarLink>
           <NavbarLink href="#">Logout</NavbarLink>

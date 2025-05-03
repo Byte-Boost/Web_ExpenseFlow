@@ -13,3 +13,17 @@ export async function getProjects() {
     const response = await instance.get<Array<Project>>("project");
     return response.data;
 }
+
+export async function getProject(id: number) {
+    const response = await instance.get<Project>(`project/${id}`);
+    return response.data;
+}
+
+export async function updatePreference(id: number, preference: ProjectPreference) {
+    const response = await instance.put(`project/preferences/${id}`, {
+        refundLimit: preference.refundLimit,
+        expenseLimit: preference.expenseLimit,
+        quantityValues: preference.quantityValues
+    });
+    return response.data;
+}
