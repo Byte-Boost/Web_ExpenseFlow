@@ -76,26 +76,30 @@ export default function Home() {
                 >
                     <div>
                         <label className="block font-medium text-gray-700 dark:text-gray-200">Refund Limit</label>
-                        <input
-                            name="refundLimit"
-                            type="number"
-                            step="0.01"
-                            value={formData?.refundLimit}
-                            onChange={handleInputChange}
-                            className="w-full mt-1 p-2 rounded border text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800"
-                        />
+                        <div className="w-full flex mt-1 rounded border text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus-within:ring-2 focus-within:ring-gray-400">
+                            <span className="p-2">R$</span>
+                            <input
+                                name="refundLimit"
+                                type="number"
+                                value={formData?.refundLimit}
+                                onChange={handleInputChange}
+                                className="p-2 grow outline-none border-none bg-transparent"
+                            />
+                        </div>
                     </div>
 
                     <div>
                         <label className="block font-medium text-gray-700 dark:text-gray-200">Expense Limit</label>
-                        <input
-                            name="expenseLimit"
-                            type="number"
-                            step="0.01"
-                            value={formData?.expenseLimit}
-                            onChange={handleInputChange}
-                            className="w-full mt-1 p-2 rounded border text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800"
-                        />
+                        <div className="w-full flex mt-1 rounded border text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus-within:ring-2 focus-within:ring-gray-400">
+                            <span className="p-2">R$</span>
+                            <input
+                                name="expenseLimit"
+                                type="number"
+                                value={formData?.expenseLimit}
+                                onChange={handleInputChange}
+                                className="p-2 grow outline-none border-none bg-transparent"
+                            />
+                        </div>
                     </div>
 
                     <div>
@@ -112,13 +116,16 @@ export default function Home() {
                                     </button>
                                     <span className="ml-2 text-sm font-semibold">{key}</span>
                                 </span>
-                                <input
-                                type="number"
-                                step="0.01"
-                                value={value[key]}
-                                onChange={(e) => handleQuantityValueChange(index, key, e.target.value)}
-                                className="max-w-3xl p-2 rounded border bg-white dark:bg-gray-800"
-                                />
+                                
+                                <div className="max-w-3xl rounded border bg-white dark:bg-gray-800 focus-within:ring-2 focus-within:ring-gray-400">
+                                    <span className="p-2">R$</span>
+                                    <input
+                                    type="number"
+                                    value={value[key]}
+                                    onChange={(e) => handleQuantityValueChange(index, key, e.target.value)}
+                                    className="p-2 outline-none border-none bg-transparent"
+                                    />
+                                </div>
                             </div>
                             )
                         })}
@@ -146,7 +153,7 @@ export default function Home() {
 
                     <section className="flex gap-3 items-center justify-center mt-4">
                         <button type="button" className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 cursor-pointer" onClick={()=>{
-                            setAddingQuantity(true);
+                            setAddingQuantity(!addingQuantity);
                         }}>
                             +
                         </button>
