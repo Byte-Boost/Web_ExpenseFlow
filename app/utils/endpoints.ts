@@ -27,3 +27,8 @@ export async function updatePreference(id: number, preference: ProjectPreference
     });
     return response.data;
 }
+
+export async function deleteProject(id: number) {
+    const response = await instance.delete<Project>(`project/${id}`);
+    return response.data;
+}

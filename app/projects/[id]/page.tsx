@@ -9,7 +9,7 @@ export default function Home() {
     const projectId = Number(params.id);
     const [addingQuantity, setAddingQuantity] = useState(false);
     const [project, setProject] = useState<Project|null>(null);
-    const [formData, setFormData] = useState<ProjectPreference|null>({
+    const [formData, setFormData] = useState<ProjectPreference>({
         refundLimit: 0,
         expenseLimit: 0,
         quantityValues: []
@@ -50,7 +50,7 @@ export default function Home() {
         const fetchProject = async () => {
             const response = await getProject(projectId);
             setProject(response);
-            setFormData(response.preferences);
+            if (response.preferences) setFormData(response.preferences);
         };
         fetchProject();
     }, [])
