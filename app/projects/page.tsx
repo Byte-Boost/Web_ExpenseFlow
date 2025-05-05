@@ -4,6 +4,8 @@ import { FaTrash } from 'react-icons/fa';
 import { createProject, deleteProject, getProjects } from "../utils/endpoints";
 import { useEffect, useState } from "react";
 import { confirmationAlert } from "../utils/alerts";
+import { MdMoreVert } from "react-icons/md";
+import { Dropdown, DropdownItem } from "flowbite-react";
 
 export default function Home() {
   const [projects, setProjects] = useState<Array<Project>>([]);
@@ -117,22 +119,34 @@ export default function Home() {
           <section className={fancyScroll+" grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 w-full max-w-7xl max-h-[40vh] p-4 mt-8 overflow-y-auto"}>
 
               {projects.map((project) => (
-                <a
-                href={`/projects/${project.id}`}
-                key={project.id}
-                className="max-w-sm block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full cursor-pointer"
-              >
-                <p className="flex justify-between font-normal text-gray-700 dark:text-gray-400">
-                  <span>{project.id}</span>
-                  <button className="bg-red-800 hover:bg-red-900 text-white p-2 rounded cursor-pointer" onClick={(e)=>{
-                    e.preventDefault()
-                    if (project.id) deleteProjectById(project.id)
-                  }}>
-                    <FaTrash className="w-4 h-4" />
-                  </button>
-                </p>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{project.name}</h5>
-              </a>
+                <div key={project.id} className="relative max-w-sm">
+                  <a
+                    href={`/projects/${project.id}`}
+                    className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full cursor-pointer"
+                  >
+                    <p className="flex justify-between font-normal text-gray-700 dark:text-gray-400">
+                      <span>{project.id}</span>
+                    </p>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{project.name}</h5>
+                  </a>
+
+                  <div className="absolute top-2 right-2 z-10">
+                    <Dropdown className="" label="" placement="right" renderTrigger={() => (
+                        <button className="hover:bg-black/20 text-white p-2 rounded cursor-pointer" onClickCapture={(e)=>{
+                        }}>
+                          <MdMoreVert className="w-4 h-4" />
+                        </button>
+                      )}
+                    >
+                      <DropdownItem onClick={()=>{
+                          if (project.id) deleteProjectById(project.id)
+                        }}
+                      >
+                        Delete
+                      </DropdownItem>
+                    </Dropdown>
+                  </div>
+                </div>
               
               ))}
               {
