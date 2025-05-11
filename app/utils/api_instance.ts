@@ -12,10 +12,10 @@ const instance = axios.create(axiosConfig);
 
 // Add a request interceptor
 instance.interceptors.request.use((config) => {
-                //   const userToken = getCookie("token"); 
+  const userToken = getCookie("token"); 
   
   // Get the authorization value  
-  const authorizationValue = 'bear ' + process.env.NEXT_PUBLIC_API_TOKEN;
+  const authorizationValue = 'bear ' + userToken;
 
   // Add the Authorization header
   config.headers.Authorization = authorizationValue;

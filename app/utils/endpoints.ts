@@ -1,6 +1,21 @@
 import instance from './api_instance';
 
 // User related endpoints
+export async function sendLogin(email: string, password: string) {
+    try{
+        const response = await instance.post("user/login", {
+            "email": email,
+            "password": password
+        })
+        return response.data
+    } catch (error) {
+        console.error("Error logging in:", error);
+        throw error;
+    }
+}
+
+
+// Project related endpoints
 export async function createProject(name: string, preferences: ProjectPreference | null = null) {
     const response = await instance.post("project", {
         "name": name,
