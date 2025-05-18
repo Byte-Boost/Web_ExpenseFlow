@@ -1,13 +1,14 @@
 'use client';
 import { NavBar } from "@/app/modules/navbar/index";
-import { FaTrash } from 'react-icons/fa';
 import { createProject, deleteProject, getProjects } from "../utils/endpoints";
 import { useEffect, useState } from "react";
 import { confirmationAlert } from "../utils/alerts";
 import { MdMoreVert } from "react-icons/md";
 import { Dropdown, DropdownItem } from "flowbite-react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const [creatingProject, setCreatingProject] = useState(false);
   const [projectName, setProjectName] = useState("");
@@ -132,17 +133,21 @@ export default function Home() {
 
                   <div className="absolute top-2 right-2 z-10">
                     <Dropdown className="" label="" placement="right" renderTrigger={() => (
-                        <button className="hover:bg-black/20 text-white p-2 rounded cursor-pointer" onClickCapture={(e)=>{
-                        }}>
-                          <MdMoreVert className="w-4 h-4" />
-                        </button>
-                      )}
-                    >
+                      <button className="hover:bg-black/20 text-white p-2 rounded cursor-pointer">
+                        <MdMoreVert className="w-4 h-4" />
+                      </button>
+                    )}>
+                      
+                      <DropdownItem onClick={()=>{
+                        router.push("projects/"+project.id+"/refunds")
+                      }}>
+                        Reembolsos
+                      </DropdownItem>
+                      
                       <DropdownItem onClick={()=>{
                           if (project.id) deleteProjectById(project.id)
-                        }}
-                      >
-                        Delete
+                      }}>
+                        <span className="text-red-500">Delete</span>
                       </DropdownItem>
                     </Dropdown>
                   </div>

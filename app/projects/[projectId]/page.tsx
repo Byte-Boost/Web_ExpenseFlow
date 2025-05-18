@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 
 export default function Home() {
     const params = useParams();
-    const projectId = Number(params.id);
+    const projectId = Number(params.projectId);
     const [addingQuantity, setAddingQuantity] = useState(false);
     const [project, setProject] = useState<Project|null>(null);
     const [formData, setFormData] = useState<ProjectPreference>({
@@ -60,9 +60,7 @@ export default function Home() {
       <NavBar></NavBar>
         <div className="flex flex-col grow items-center justify-around py-2">
             <section className="flex flex-col items-center justify-center p-8 min-w-lg rounded-xl border bg-white border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-                    #{projectId} - {project?.name}
-                </h1>
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">#{projectId} - {project?.name}</h1>
                 <form className="mt-4 space-y-4 w-full max-w-xl" 
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') e.preventDefault()
