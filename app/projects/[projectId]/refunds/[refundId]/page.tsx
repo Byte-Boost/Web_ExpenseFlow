@@ -2,10 +2,13 @@
 import { NavBar } from "@/app/modules/navbar/index";
 import { authorizeRefund, getExpenseById, getRefundById } from "@/app/utils/endpoints";
 import { useEffect, useState } from "react";
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
+import { failureAlert, successAlert } from "@/app/utils/alerts";
+import { FaUndo } from "react-icons/fa";
 
 export default function Home() {
+    const router = useRouter();
     const params = useParams();
     const projectId = Number(params.projectId);
     const refundId = Number(params.refundId);
@@ -44,10 +47,11 @@ export default function Home() {
                 <div className="w-full max-w-lg mx-auto rounded-lg border shadow-sm p-6 bg-white border-gray-200  dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white mb-4">
                     {/* Header */}
                     <div className="flex justify-between items-start mb-1 text-gray-900 dark:text-white">
-                        <span className="text-lg font-semibold">#{refund.id}</span>
-                        <span className={"text-xs px-2 py-0.5 rounded-full " + badges["default"]}>
-                            {refund.Project.name}
+                        <span className="text-4xl">
+                            <span className="text-gray-800 dark:text-gray-400 mr-8">#{refund.id}</span>
+                            <span>R${refund.totalValue.toFixed(2)}</span>
                         </span>
+                        <span className={"text-xs px-2 py-0.5 rounded-full " + badges["default"]}>{refund.Project.name}</span>
                     </div>
                     <p className="text-sm text-gray-500 mb-4">
                         {new Date(refund.date).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' })} •
@@ -75,11 +79,11 @@ export default function Home() {
                         {expenses.map((exp:any, ind:any) => (
                             <AccordionPanel key={exp.id} >
                                 <AccordionTitle className="cursor-pointer">
-                                    {ind} - R${exp.id.toFixed(2)}
+                                    R${exp.value.toFixed(2)}
                                 </AccordionTitle>
 
                                 <AccordionContent>
-                                    <div className="space-y-3 text-sm text-gray-700">
+                                    <div className="space-y-3 text-sm text-gray-800 dark:text-gray-300">
 
                                         {/* date */}
                                         <div className="flex justify-between">
@@ -135,6 +139,34 @@ export default function Home() {
                             </AccordionPanel>
                         ))}
                     </Accordion>
+
+                    {/* Approve/Reject */}
+                    { refund.status === "in-process" && (
+                        <section className="flex gap-3 items-center justify-center mt-4">
+                            <button type="button" className="mt-4 w-full py-2 px-4 rounded cursor-pointer text-white bg-red-600 hover:bg-red-700" onClick={()=>{
+                                processRefund(false).then((res:any)=>{
+                                    successAlert("Reembolso reprovado", "Refund rejected successfully.");
+                                    router.push("/projects/"+projectId+"/refunds");
+
+                                }).catch((err:any)=>{
+                                    failureAlert("Erro ao reprovado reembolso", "An error occured while trying to reject the refund.");
+                                });
+                            }}>
+                                Reprovar
+                            </button>
+
+                            <button type="button" className="mt-4 w-full py-2 px-4 rounded cursor-pointer text-white bg-green-600 hover:bg-green-700" onClick={()=>{
+                                processRefund(true).then((res:any)=>{
+                                    successAlert("Reembolso aprovado", "Refund approved successfully.");
+                                    router.push("/projects/"+projectId+"/refunds");
+                                }).catch((err:any)=>{
+                                    failureAlert("Erro ao aprovar reembolso", "An error occured while trying to approve the refund.");
+                                });
+                            }}>
+                                Aprovar
+                            </button>
+                        </section>
+                    )}
                 </div>
                 )}
             </div>

@@ -107,7 +107,7 @@ export default function Home() {
           </div>
         ): 
 
-        <div className="flex flex-col grow items-center justify-around py-2">
+        <div className="flex flex-col grow items-center justify-mt-20 py-2 mt-20">
           <section className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               Projects
@@ -133,7 +133,7 @@ export default function Home() {
 
                   <div className="absolute top-2 right-2 z-10">
                     <Dropdown className="" label="" placement="right" renderTrigger={() => (
-                      <button className="hover:bg-black/20 text-white p-2 rounded cursor-pointer">
+                      <button className="hover:bg-black/20 dark:text-white p-2 rounded cursor-pointer">
                         <MdMoreVert className="w-4 h-4" />
                       </button>
                     )}>

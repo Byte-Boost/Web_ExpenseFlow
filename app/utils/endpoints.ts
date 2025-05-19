@@ -66,7 +66,7 @@ export async function getExpenseById(expenseId: string) {
     return response.data;
 }
 export async function authorizeRefund(refundId: number, authorize: boolean) {
-    const response = await instance.put<any>(`refund/${refundId}/authorize`, {
+    const response = await instance.patch<any>(`refund/${refundId}/authorize`, {
         params: {
             approved: authorize
         }

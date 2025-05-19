@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
       <NavBar></NavBar>
-        <div className="flex flex-col grow items-center justify-around py-2">
+        <div className="flex flex-col grow items-center justify-start py-2 mt-20">
             <section className="flex flex-col items-center justify-center p-8 min-w-lg rounded-xl border bg-white border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white">#{projectId} - {project?.name}</h1>
                 <form className="mt-4 space-y-4 w-full max-w-xl" 

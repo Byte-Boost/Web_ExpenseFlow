@@ -45,8 +45,8 @@ export default function Home() {
           </div>
         ): 
 
-        <div className="flex flex-col grow items-center justify-around py-2">
-          <section className="flex flex-col items-center justify-center">
+        <div className="flex flex-col grow items-center justify-start py-2">
+          <section className="flex flex-col items-center justify-center mt-20">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               Refunds
             </h1>
