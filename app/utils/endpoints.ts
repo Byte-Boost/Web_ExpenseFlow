@@ -47,3 +47,29 @@ export async function deleteProject(id: number) {
     const response = await instance.delete<Project>(`project/${id}`);
     return response.data;
 }
+
+// Refund related endpoints
+export async function getRefunds(projectId: number|null=null) {
+    const response = await instance.get<any>("refund", {
+        params: {
+            projectId: projectId
+        }
+    });
+    return response.data;
+}
+export async function getRefundById(refundId: number) {
+    const response = await instance.get<any>(`refund/${refundId}`);
+    return response.data;
+}
+export async function getExpenseById(expenseId: string) {
+    const response = await instance.get<any>(`refund/expense/${expenseId}`);
+    return response.data;
+}
+export async function authorizeRefund(refundId: number, authorize: boolean) {
+    const response = await instance.patch<any>(`refund/${refundId}/authorize`, {}, {
+        params: {
+            approved: authorize
+        }
+    });
+    return response.data;
+}
