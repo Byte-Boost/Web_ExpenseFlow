@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from 'next/navigation';
 import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
 import { failureAlert, successAlert } from "@/app/utils/alerts";
-import { FaUndo } from "react-icons/fa";
+import { FaTimes } from 'react-icons/fa';
 
 export default function Home() {
     const router = useRouter();
     const params = useParams();
     const projectId = Number(params.projectId);
     const refundId = Number(params.refundId);
+    const [showModal, setShowModal] = useState(null);
     const [refund, setRefund] = useState<any|null>(null);
     const [expenses, setExpenses] = useState<any>([]);
     
@@ -31,6 +32,7 @@ export default function Home() {
         };
         fetchRefund();
     }, [])
+
     let badges = {
         "default": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
         "new": "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
@@ -38,6 +40,22 @@ export default function Home() {
         "approved": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
         "in-process": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
     }
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setShowModal(null);
+            }
+        };
+
+        if (showModal!=null) {
+            document.addEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [showModal]);
 
     return (
         <main className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
@@ -124,14 +142,30 @@ export default function Home() {
                                         )}
 
                                         {/* attachments (TBD) */}
-                                        {exp.attachments && (
+                                        {exp.attachment && (
                                             <div>
-                                            <p className="font-medium mb-1">Attachments</p>
+                                            <p className="font-medium mb-1">Attachment</p>
                                             <img
                                                 src={exp.attachment}
                                                 alt="expense proof"
-                                                className="w-full max-h-56 object-cover rounded border"
+                                                onClick={()=>{setShowModal(ind)}}
+                                                className="w-full max-h-56 object-cover rounded border cursor-pointer"
                                             />
+                                            {showModal==ind && (
+                                                <div
+                                                onClick={() => setShowModal(null)}
+                                                className="fixed inset-0 bg-black/80 dark:bg-gray-900/80 flex items-center justify-center z-50 transition-all duration-200"
+                                                >
+                                                    <button
+                                                        onClick={() => setShowModal(null)}
+                                                        className="absolute top-8 right-8 text-white text-2xl hover:text-red-400 cursor-pointer"
+                                                        aria-label="Close"
+                                                    >
+                                                        <FaTimes />
+                                                    </button>
+                                                    <img src={exp.attachment} alt="Full Size" className="max-w-[90%] max-h-[90%] object-contain" />
+                                                </div>
+                                            )}
                                             </div>
                                         )}
                                     </div>
