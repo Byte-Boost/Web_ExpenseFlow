@@ -136,27 +136,27 @@ export default function Home() {
                     <div className="space-y-3 text-sm text-gray-800 dark:text-gray-300">
                       {/* date */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Date</span>
+                        <span className="font-medium">Data</span>
                         <span>{new Date(exp.date).toLocaleDateString()}</span>
                       </div>
 
                       {/* type */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Type</span>
+                        <span className="font-medium">Tipo</span>
                         <span className="capitalize">{exp.type}</span>
                       </div>
 
                       {/* quantity type */}
                       {exp.type === "quantity" && (
                         <div className="flex justify-between">
-                          <span className="font-medium">Quantity type</span>
+                          <span className="font-medium">Tipo de quantidade</span>
                           <span>{exp.quantityType}</span>
                         </div>
                       )}
 
                       {/* value */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Value</span>
+                        <span className="font-medium">Valor</span>
                         <span className="font-semibold">
                           R$ {exp.value.toFixed(2)}
                         </span>
@@ -165,7 +165,7 @@ export default function Home() {
                       {/* description */}
                       {exp.description && (
                         <div>
-                          <p className="font-medium">Description</p>
+                          <p className="font-medium">Descrição</p>
                           <p className="whitespace-pre-line text-gray-600">
                             {exp.description}
                           </p>
@@ -175,7 +175,7 @@ export default function Home() {
                       {/* attachments (TBD) */}
                       {exp.attachment && (
                         <div>
-                          <p className="mb-1 font-medium">Attachment</p>
+                          <p className="mb-1 font-medium">Anexo</p>
                           <img
                             src={exp.attachment}
                             alt="expense proof"

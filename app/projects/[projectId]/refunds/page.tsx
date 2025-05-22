@@ -41,13 +41,13 @@ export default function Home() {
         <div className="flex grow flex-col items-center justify-center py-2">
           <section className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              Refunds
+              Reembolsos
             </h1>
             {isLoading ? (
               <Spinner color="purple" className="m-20 scale-200" />
             ) : (
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                No refunds found.
+                Nenhum reembolso encontrado.
               </p>
             )}
           </section>
@@ -56,10 +56,10 @@ export default function Home() {
         <div className="flex grow flex-col items-center justify-start py-2">
           <section className="mt-20 flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              Refunds
+              Reembolsos
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              {refunds.length} refunds found.
+              {refunds.length} reembolsos encontrados.
             </p>
           </section>
 

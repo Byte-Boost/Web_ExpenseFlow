@@ -112,7 +112,7 @@ export default function Home() {
                   setCreatingProject(!creatingProject);
                 }}
               >
-                Create New Project
+                Criar um novo projeto
               </button>
             </div>
           </section>
@@ -121,10 +121,10 @@ export default function Home() {
         <div className="justify-mt-20 mt-20 flex grow flex-col items-center py-2">
           <section className="flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              Projects
+              Projetos
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              {projects.length} projects found.
+              {projects.length} projetos encontrados.
             </p>
           </section>
 
@@ -172,7 +172,7 @@ export default function Home() {
                         if (project.id) deleteProjectById(project.id);
                       }}
                     >
-                      <span className="text-red-500">Delete</span>
+                      <span className="text-red-500">Excluir</span>
                     </DropdownItem>
                   </Dropdown>
                 </div>
@@ -181,7 +181,7 @@ export default function Home() {
             {creatingProject && (
               <a className="block h-full max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Give a name to the project
+                  Dê um nome ao projeto
                 </p>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
                 <input
@@ -217,7 +217,7 @@ export default function Home() {
                   setCreatingProject(!creatingProject);
                 }}
               >
-                Create New Project
+                Criar um novo projeto
               </button>
             </div>
           </section>

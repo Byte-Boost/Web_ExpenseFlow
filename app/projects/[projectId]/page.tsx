@@ -88,7 +88,7 @@ export default function Home() {
             >
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Refund Limit
+                  Limite de Reembolsos
                 </label>
                 <div className="mt-1 flex w-full rounded border bg-white text-gray-700 focus-within:ring-2 focus-within:ring-gray-400 dark:bg-gray-800 dark:text-gray-200">
                   <span className="p-2">R$</span>
@@ -104,7 +104,7 @@ export default function Home() {
 
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Expense Limit
+                  Limite de Despesas
                 </label>
                 <div className="mt-1 flex w-full rounded border bg-white text-gray-700 focus-within:ring-2 focus-within:ring-gray-400 dark:bg-gray-800 dark:text-gray-200">
                   <span className="p-2">R$</span>
@@ -120,7 +120,7 @@ export default function Home() {
 
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Quantity Values
+                  Valores de Quantidade
                 </label>
                 {formData?.quantityValues.map((value, index) => {
                   const key = Object.keys(value)[0];
@@ -211,7 +211,7 @@ export default function Home() {
                   type="submit"
                   className="mt-4 w-full cursor-pointer rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                 >
-                  Save Preferences
+                  Salvar preferências
                 </button>
               </section>
             </form>
