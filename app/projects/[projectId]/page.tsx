@@ -2,11 +2,13 @@
 import { NavBar } from "@/app/modules/navbar/index";
 import { getProject, updatePreference } from "@/app/utils/endpoints";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Spinner } from "flowbite-react";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function Home() {
   const params = useParams();
+  const router = useRouter();
   const projectId = Number(params.projectId);
   const [addingQuantity, setAddingQuantity] = useState(false);
   const [project, setProject] = useState<Project | null>(null);
@@ -68,7 +70,12 @@ export default function Home() {
         {isLoading ? (
           <Spinner color="purple" className="m-20 scale-200" />
         ) : (
-          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800 relative">
+              <span onClick={()=>{
+                  router.push("/projects/" + projectId + "/refunds");
+              }}>
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-12 aspect-square rounded-full bg-white border-black dark:bg-gray-800 dark:text-white dark:border-white border-solid border-2 cursor-pointer"></FaArrowLeft>
+              </span>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               #{projectId} - {project?.name}
             </h1>

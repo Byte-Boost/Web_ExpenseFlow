@@ -1,23 +1,24 @@
 "use client";
 import { NavBar } from "@/app/modules/navbar/index";
-import { getRefunds } from "../../../utils/endpoints";
+import { getProject, getRefunds } from "../../../utils/endpoints";
 import { useEffect, useState } from "react";
-import { confirmationAlert } from "../../../utils/alerts";
-import { MdMoreVert } from "react-icons/md";
-import { Dropdown, DropdownItem, Spinner } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 import { useParams } from "next/navigation";
 
 export default function Home() {
   const params = useParams();
   const projectId = Number(params.projectId);
+  const [projectName, setProjectName] = useState("");
   const [refunds, setRefunds] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchRefunds = async () => {
+      const projResponse = await getProject(projectId);
       const response = await getRefunds(projectId);
       setIsLoading(false);
       setRefunds(response);
+      setProjectName(projResponse.name);
     };
     fetchRefunds();
   }, []);
@@ -56,7 +57,7 @@ export default function Home() {
         <div className="flex grow flex-col items-center justify-start py-2">
           <section className="mt-20 flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              Reembolsos
+              {projectName} - Reembolsos
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
               {refunds.length} reembolsos encontrados.

@@ -15,7 +15,7 @@ import {
   Spinner,
 } from "flowbite-react";
 import { failureAlert, successAlert } from "@/app/utils/alerts";
-import { FaTimes } from "react-icons/fa";
+import { FaArrowLeft, FaTimes } from "react-icons/fa";
 
 export default function Home() {
   const router = useRouter();
@@ -80,7 +80,12 @@ export default function Home() {
           <div className="mx-auto mb-4 w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white">
             {/* Header */}
             <div className="mb-1 flex items-start justify-between text-gray-900 dark:text-white">
-              <span className="text-4xl">
+              <span className="text-4xl relative">
+                <span onClick={()=>{
+                    router.push("/projects/" + projectId + "/refunds");
+                }}>
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-16 -top-4 aspect-square rounded-full bg-white border-black dark:bg-gray-800 dark:text-white dark:border-white border-solid border-2 cursor-pointer"></FaArrowLeft>
+                </span>
                 <span className="mr-8 text-gray-800 dark:text-gray-400">
                   #{refund.id}
                 </span>
