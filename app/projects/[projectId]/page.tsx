@@ -2,11 +2,14 @@
 import { NavBar } from "@/app/modules/navbar/index";
 import { getProject, updatePreference } from "@/app/utils/endpoints";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Spinner } from "flowbite-react";
+import { useParams, useRouter } from "next/navigation";
+import { Dropdown, DropdownItem, Spinner } from "flowbite-react";
+import { FaArrowLeft } from "react-icons/fa";
+import { MdMoreVert } from "react-icons/md";
 
 export default function Home() {
   const params = useParams();
+  const router = useRouter();
   const projectId = Number(params.projectId);
   const [addingQuantity, setAddingQuantity] = useState(false);
   const [project, setProject] = useState<Project | null>(null);
@@ -68,10 +71,36 @@ export default function Home() {
         {isLoading ? (
           <Spinner color="purple" className="m-20 scale-200" />
         ) : (
-          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800 relative exposing-parent">
+            <span onClick={()=>{
+                router.push("/projects");
+            }}>
+              <FaArrowLeft className="w-8 h-8 p-1 absolute -left-12 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
+            </span>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               #{projectId} - {project?.name}
             </h1>
+            <div className="absolute top-2 right-2 z-10 hidden-child">
+              <Dropdown
+                className=""
+                label=""
+                placement="right"
+                renderTrigger={() => (
+                  <button className="cursor-pointer rounded p-2 hover:bg-black/20 dark:text-white">
+                    <MdMoreVert className="h-6 w-6" />
+                  </button>
+                )}
+              >
+                <DropdownItem
+                  className="text-xl"
+                  onClick={() => {
+                    router.push(`${projectId}/refunds`);
+                  }}
+                >
+                  Reembolsos
+                </DropdownItem>
+              </Dropdown>
+            </div>
             <form
               className="mt-4 w-full max-w-xl space-y-4"
               onKeyDown={(e) => {
@@ -88,7 +117,7 @@ export default function Home() {
             >
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Refund Limit
+                  Limite de Reembolsos
                 </label>
                 <div className="mt-1 flex w-full rounded border bg-white text-gray-700 focus-within:ring-2 focus-within:ring-gray-400 dark:bg-gray-800 dark:text-gray-200">
                   <span className="p-2">R$</span>
@@ -104,7 +133,7 @@ export default function Home() {
 
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Expense Limit
+                  Limite de Despesas
                 </label>
                 <div className="mt-1 flex w-full rounded border bg-white text-gray-700 focus-within:ring-2 focus-within:ring-gray-400 dark:bg-gray-800 dark:text-gray-200">
                   <span className="p-2">R$</span>
@@ -120,7 +149,7 @@ export default function Home() {
 
               <div>
                 <label className="block font-medium text-gray-700 dark:text-gray-200">
-                  Quantity Values
+                  Valores de Quantidade
                 </label>
                 {formData?.quantityValues.map((value, index) => {
                   const key = Object.keys(value)[0];
@@ -211,7 +240,7 @@ export default function Home() {
                   type="submit"
                   className="mt-4 w-full cursor-pointer rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                 >
-                  Save Preferences
+                  Salvar preferências
                 </button>
               </section>
             </form>

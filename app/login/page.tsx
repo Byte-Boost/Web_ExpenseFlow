@@ -46,7 +46,7 @@ export default function Home() {
                 >
 
                     <div>
-                      <label className="block font-medium text-gray-700 dark:text-gray-200">Username</label>
+                      <label className="block font-medium text-gray-700 dark:text-gray-200">Email</label>
                       <input
                           name="username"
                           type="text"
@@ -57,7 +57,7 @@ export default function Home() {
                     </div>
 
                     <div>
-                      <label className="block font-medium text-gray-700 dark:text-gray-200">Password</label>
+                      <label className="block font-medium text-gray-700 dark:text-gray-200">Senha</label>
                       <input
                           name="password"
                           type="password"

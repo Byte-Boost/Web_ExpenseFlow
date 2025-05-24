@@ -15,7 +15,7 @@ import {
   Spinner,
 } from "flowbite-react";
 import { failureAlert, successAlert } from "@/app/utils/alerts";
-import { FaTimes } from "react-icons/fa";
+import { FaArrowLeft, FaTimes } from "react-icons/fa";
 
 export default function Home() {
   const router = useRouter();
@@ -80,7 +80,12 @@ export default function Home() {
           <div className="mx-auto mb-4 w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white">
             {/* Header */}
             <div className="mb-1 flex items-start justify-between text-gray-900 dark:text-white">
-              <span className="text-4xl">
+              <span className="text-4xl relative">
+                <span onClick={()=>{
+                    router.push("/projects/" + projectId + "/refunds");
+                }}>
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-16 -top-4 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
+                </span>
                 <span className="mr-8 text-gray-800 dark:text-gray-400">
                   #{refund.id}
                 </span>
@@ -136,27 +141,27 @@ export default function Home() {
                     <div className="space-y-3 text-sm text-gray-800 dark:text-gray-300">
                       {/* date */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Date</span>
+                        <span className="font-medium">Data</span>
                         <span>{new Date(exp.date).toLocaleDateString()}</span>
                       </div>
 
                       {/* type */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Type</span>
+                        <span className="font-medium">Tipo</span>
                         <span className="capitalize">{exp.type}</span>
                       </div>
 
                       {/* quantity type */}
                       {exp.type === "quantity" && (
                         <div className="flex justify-between">
-                          <span className="font-medium">Quantity type</span>
+                          <span className="font-medium">Tipo de quantidade</span>
                           <span>{exp.quantityType}</span>
                         </div>
                       )}
 
                       {/* value */}
                       <div className="flex justify-between">
-                        <span className="font-medium">Value</span>
+                        <span className="font-medium">Valor</span>
                         <span className="font-semibold">
                           R$ {exp.value.toFixed(2)}
                         </span>
@@ -165,7 +170,7 @@ export default function Home() {
                       {/* description */}
                       {exp.description && (
                         <div>
-                          <p className="font-medium">Description</p>
+                          <p className="font-medium">Descrição</p>
                           <p className="whitespace-pre-line text-gray-600">
                             {exp.description}
                           </p>
@@ -175,7 +180,7 @@ export default function Home() {
                       {/* attachments (TBD) */}
                       {exp.attachment && (
                         <div>
-                          <p className="mb-1 font-medium">Attachment</p>
+                          <p className="mb-1 font-medium">Anexo</p>
                           <img
                             src={exp.attachment}
                             alt="expense proof"
