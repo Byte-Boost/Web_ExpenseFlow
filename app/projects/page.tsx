@@ -49,8 +49,6 @@ export default function Home() {
     fetchProjects();
   }, []);
 
-  let fancyScroll =
-    "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500";
   return (
     <main className="flex min-h-screen flex-col bg-gray-100 dark:bg-gray-900">
       <NavBar></NavBar>
@@ -71,10 +69,7 @@ export default function Home() {
 
           {creatingProject && (
             <section
-              className={
-                fancyScroll +
-                " mt-8 grid max-h-[40vh] w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
-              }
+              className="fancyScroll mt-8 grid max-h-[40vh] w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
             >
               <a className="block h-full max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -129,10 +124,7 @@ export default function Home() {
           </section>
 
           <section
-            className={
-              fancyScroll +
-              " mt-8 grid max-h-[40vh] w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
-            }
+            className="fancyScroll mt-8 grid max-h-[40vh] w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
           >
             {projects.map((project) => (
               <div key={project.id} className="relative max-w-sm">

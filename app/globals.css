@@ -29,3 +29,30 @@ input[type=number] {
   opacity: 1;
   visibility: visible;
 }
+
+
+/* scrollbar */
+.fancyScroll::-webkit-scrollbar {
+  width: 0.5rem; /* Tailwind's w-2 = 0.5rem */
+}
+
+.fancyScroll::-webkit-scrollbar-track {
+  border-radius: 9999px; /* rounded-full */
+  background: #f3f4f6; /* Tailwind's gray-100 = #f3f4f6 */
+}
+
+.fancyScroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px; /* rounded-full */
+  background: #d1d5db; /* Tailwind's gray-300 = #d1d5db */
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .fancyScroll::-webkit-scrollbar-track {
+    background: #3f3f46; /* Tailwind's neutral-700 = #3f3f46 */
+  }
+
+  .fancyScroll::-webkit-scrollbar-thumb {
+    background: #737373; /* Tailwind's neutral-500 = #737373 */
+  }
+}

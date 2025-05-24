@@ -1,14 +1,8 @@
 import {
-    Avatar,
-    Dropdown,
-    DropdownDivider,
-    DropdownHeader,
-    DropdownItem,
     Navbar,
     NavbarBrand,
     NavbarCollapse,
     NavbarLink,
-    NavbarToggle,
   } from "flowbite-react";
 
   export function NavBar() {
@@ -20,7 +14,7 @@ import {
         </NavbarBrand>
         <NavbarCollapse>
           <NavbarLink href="/projects">Projetos</NavbarLink>
-          <NavbarLink href="#">Usuários</NavbarLink>
+          <NavbarLink href="/users">Usuários</NavbarLink>
           <NavbarLink href="/login"><span className="font-bold text-red-400 hover:text-red-600 dark:text-red-400 dark:hover:text-red-600">Logout</span></NavbarLink>
         </NavbarCollapse>
       </Navbar>
