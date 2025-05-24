@@ -35,8 +35,6 @@ export default function Home() {
     "in-process":
       "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
   };
-  let fancyScroll =
-    "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500";
   return (
     <main className="flex min-h-screen flex-col bg-gray-100 dark:bg-gray-900">
       <NavBar></NavBar>
@@ -78,10 +76,7 @@ export default function Home() {
           </section>
 
           <section
-            className={
-              fancyScroll +
-              " mt-8 grid max-h-[40vh] w-fit max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
-            }
+            className="fancyScroll mt-8 grid max-h-[40vh] w-fit max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
           >
             {refunds.map((refund) => (
               <div key={refund.id} className="relative max-w-sm">
