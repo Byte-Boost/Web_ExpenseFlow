@@ -3,8 +3,9 @@ import { NavBar } from "@/app/modules/navbar/index";
 import { getProject, updatePreference } from "@/app/utils/endpoints";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Spinner } from "flowbite-react";
+import { Dropdown, DropdownItem, Spinner } from "flowbite-react";
 import { FaArrowLeft } from "react-icons/fa";
+import { MdMoreVert } from "react-icons/md";
 
 export default function Home() {
   const params = useParams();
@@ -70,15 +71,36 @@ export default function Home() {
         {isLoading ? (
           <Spinner color="purple" className="m-20 scale-200" />
         ) : (
-          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800 relative">
-              <span onClick={()=>{
-                  router.push("/projects/" + projectId + "/refunds");
-              }}>
-                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-12 aspect-square rounded-full bg-white border-black dark:bg-gray-800 dark:text-white dark:border-white border-solid border-2 cursor-pointer"></FaArrowLeft>
-              </span>
+          <section className="flex min-w-lg flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800 relative exposing-parent">
+            <span onClick={()=>{
+                router.push("/projects");
+            }}>
+              <FaArrowLeft className="w-8 h-8 p-1 absolute -left-12 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
+            </span>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               #{projectId} - {project?.name}
             </h1>
+            <div className="absolute top-2 right-2 z-10 hidden-child">
+              <Dropdown
+                className=""
+                label=""
+                placement="right"
+                renderTrigger={() => (
+                  <button className="cursor-pointer rounded p-2 hover:bg-black/20 dark:text-white">
+                    <MdMoreVert className="h-6 w-6" />
+                  </button>
+                )}
+              >
+                <DropdownItem
+                  className="text-xl"
+                  onClick={() => {
+                    router.push(`${projectId}/refunds`);
+                  }}
+                >
+                  Reembolsos
+                </DropdownItem>
+              </Dropdown>
+            </div>
             <form
               className="mt-4 w-full max-w-xl space-y-4"
               onKeyDown={(e) => {

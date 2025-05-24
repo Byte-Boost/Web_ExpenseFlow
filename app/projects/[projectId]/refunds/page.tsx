@@ -4,9 +4,12 @@ import { getProject, getRefunds } from "../../../utils/endpoints";
 import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 import { useParams } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const params = useParams();
+  const router = useRouter();
   const projectId = Number(params.projectId);
   const [projectName, setProjectName] = useState("");
   const [refunds, setRefunds] = useState<Array<any>>([]);
@@ -41,7 +44,12 @@ export default function Home() {
       {refunds.length <= 0 ? (
         <div className="flex grow flex-col items-center justify-center py-2">
           <section className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white relative">
+              <span onClick={()=>{
+                  router.push("/projects");
+                }} className="absolute">
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-12 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
+              </span>
               Reembolsos
             </h1>
             {isLoading ? (
@@ -56,7 +64,12 @@ export default function Home() {
       ) : (
         <div className="flex grow flex-col items-center justify-start py-2">
           <section className="mt-20 flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white relative">
+              <span onClick={()=>{
+                  router.push(`/projects/${projectId}`);
+                }} className="absolute">
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-10 top-1 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
+              </span>
               {projectName} - Reembolsos
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">

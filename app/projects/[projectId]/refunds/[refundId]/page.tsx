@@ -84,7 +84,7 @@ export default function Home() {
                 <span onClick={()=>{
                     router.push("/projects/" + projectId + "/refunds");
                 }}>
-                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-16 -top-4 aspect-square rounded-full bg-white border-black dark:bg-gray-800 dark:text-white dark:border-white border-solid border-2 cursor-pointer"></FaArrowLeft>
+                <FaArrowLeft className="w-8 h-8 p-1 absolute -left-16 -top-4 aspect-square rounded-full border-solid border-2 cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-400"></FaArrowLeft>
                 </span>
                 <span className="mr-8 text-gray-800 dark:text-gray-400">
                   #{refund.id}
