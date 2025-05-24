@@ -2,7 +2,7 @@
 import { NavBar } from "@/app/modules/navbar/index";
 import { createProject, deleteProject, getProjects } from "../utils/endpoints";
 import { useEffect, useState } from "react";
-import { confirmationAlert } from "../utils/alerts";
+import { confirmationAlert, failureAlert, successAlert } from "../utils/alerts";
 import { MdMoreVert } from "react-icons/md";
 import { Dropdown, DropdownItem, Spinner } from "flowbite-react";
 import { useRouter } from "next/navigation";
@@ -189,11 +189,14 @@ export default function Home() {
 
                       if (newProject) {
                         createNewProject(newProject).then((response) => {
+                          successAlert("Projeto criado com sucesso", "success");
+                          setProjectName("");
                           setCreatingProject(false);
+                        }).catch(err=>{
+                          console.log(err);
+                          failureAlert("Erro ao criar o projeto", "an error occurred while creating the project");
                         });
                       }
-                      setProjectName("");
-                      setCreatingProject(false);
                     }
                   }}
                 />

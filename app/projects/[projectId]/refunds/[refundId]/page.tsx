@@ -1,9 +1,9 @@
 "use client";
 import { NavBar } from "@/app/modules/navbar/index";
 import {
-  authorizeRefund,
   getExpenseById,
   getRefundById,
+  processRefund,
 } from "@/app/utils/endpoints";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -16,6 +16,7 @@ import {
 } from "flowbite-react";
 import { failureAlert, successAlert } from "@/app/utils/alerts";
 import { FaArrowLeft, FaTimes } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const router = useRouter();
@@ -27,9 +28,48 @@ export default function Home() {
   const [expenses, setExpenses] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function processRefund(authorize: boolean) {
-    const response: any = await authorizeRefund(refundId, authorize);
-    return response;
+  async function authorizeRefund() {
+    processRefund(refundId, true)
+    .then((res: any) => {
+      successAlert(
+        "Reembolso aprovado",
+        "Refund approved successfully.",
+      );
+      router.push("/projects/" + projectId + "/refunds");
+    })
+    .catch((err: any) => {
+      failureAlert(
+        "Erro ao aprovar reembolso",
+        "An error occured while trying to approve the refund.",
+      );
+    });    
+  }
+
+  async function rejectRefund() {
+    Swal.fire({
+      title: "Digite o motivo da reprovação",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+      showCancelButton: true,
+      confirmButtonText: "Reprovar",
+      confirmButtonColor: "red",
+      showLoaderOnConfirm: true,
+      preConfirm: async (reason) => {       
+        const response: any = await processRefund(refundId, false, reason);
+        return response;
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        successAlert("Reembolso reprovado", "Refund rejected successfully.");
+        router.push("/projects/" + projectId + "/refunds");
+      }
+    }).catch((err) => {
+      failureAlert("Erro ao reprovado reembolso", "An error occured while trying to reject the refund.");
+      console.log(err);
+    });
   }
 
   useEffect(() => {
@@ -222,22 +262,7 @@ export default function Home() {
                 <button
                   type="button"
                   className="mt-4 w-full cursor-pointer rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-                  onClick={() => {
-                    processRefund(false)
-                      .then((res: any) => {
-                        successAlert(
-                          "Reembolso reprovado",
-                          "Refund rejected successfully.",
-                        );
-                        router.push("/projects/" + projectId + "/refunds");
-                      })
-                      .catch((err: any) => {
-                        failureAlert(
-                          "Erro ao reprovado reembolso",
-                          "An error occured while trying to reject the refund.",
-                        );
-                      });
-                  }}
+                  onClick={rejectRefund}
                 >
                   Reprovar
                 </button>
@@ -245,22 +270,7 @@ export default function Home() {
                 <button
                   type="button"
                   className="mt-4 w-full cursor-pointer rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
-                  onClick={() => {
-                    processRefund(true)
-                      .then((res: any) => {
-                        successAlert(
-                          "Reembolso aprovado",
-                          "Refund approved successfully.",
-                        );
-                        router.push("/projects/" + projectId + "/refunds");
-                      })
-                      .catch((err: any) => {
-                        failureAlert(
-                          "Erro ao aprovar reembolso",
-                          "An error occured while trying to approve the refund.",
-                        );
-                      });
-                  }}
+                  onClick={authorizeRefund}
                 >
                   Aprovar
                 </button>

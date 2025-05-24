@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Dropdown, DropdownItem, Spinner } from "flowbite-react";
 import { FaArrowLeft } from "react-icons/fa";
 import { MdMoreVert } from "react-icons/md";
+import { failureAlert, successAlert } from "@/app/utils/alerts";
 
 export default function Home() {
   const params = useParams();
@@ -110,9 +111,13 @@ export default function Home() {
                 e.preventDefault();
                 updateProjectPreferences(formData as ProjectPreference).then(
                   (response) => {
+                    successAlert("Preferências atualizadas com sucesso", "success");
                     console.log(response);
-                  },
-                );
+                  }
+                ).catch(err=>{
+                    console.log(err);
+                    failureAlert("Erro ao atualizar preferências", "error updating project preferences");
+                });
               }}
             >
               <div>
