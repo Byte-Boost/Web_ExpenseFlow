@@ -11,7 +11,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
+/* Currency Prefix */
 input[type=number] {
   -moz-appearance: textfield;
 }
@@ -19,7 +19,7 @@ input[type=number] {
   content: 'R$';
 }
 
-/* child hidden behind parent */
+/* Child Hidden Behind Parent */
 .exposing-parent > .hidden-child {
   opacity: 0;
   visibility: hidden;
@@ -35,17 +35,14 @@ input[type=number] {
 .fancyScroll::-webkit-scrollbar {
   width: 0.5rem; /* Tailwind's w-2 = 0.5rem */
 }
-
 .fancyScroll::-webkit-scrollbar-track {
   border-radius: 9999px; /* rounded-full */
   background: #f3f4f6; /* Tailwind's gray-100 = #f3f4f6 */
 }
-
 .fancyScroll::-webkit-scrollbar-thumb {
   border-radius: 9999px; /* rounded-full */
   background: #d1d5db; /* Tailwind's gray-300 = #d1d5db */
 }
-
 @-moz-document url-prefix() {
    .fancyScroll{
     scrollbar-width: thin;
@@ -53,20 +50,63 @@ input[type=number] {
    }
 }
 
+/* Badges */
+.in-process-badge {
+  background-color: rgb(219,234,254); 
+  color: rgb(30,64,175);
+}
+.new-badge {
+  background-color: rgb(243,244,246); 
+  color: rgb(31,41,55);
+}
+.rejected-badge {
+  background-color: rgb(254,226,226);
+  color: rgb(153,27,27);
+}
+.approved-badge {
+  background-color: rgb(220,252,231); 
+  color: rgb(22,101,52);
+}
+.default-badge {
+  background-color: rgb(254,249,195); 
+  color: rgb(133,77,14);
+}
+
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
+  /* Scrolls */
   .fancyScroll::-webkit-scrollbar-track {
     background: #3f3f46; /* Tailwind's neutral-700 = #3f3f46 */
   }
-
   .fancyScroll::-webkit-scrollbar-thumb {
     background: #737373; /* Tailwind's neutral-500 = #737373 */
   }
-  
   @-moz-document url-prefix() {
     .fancyScroll{
       scrollbar-width: thin;
       scrollbar-color: #737373 #3f3f46;
     }
+  }
+
+  /* Badges */
+  .in-process-badge{
+    background-color: rgb(30,58,138); 
+    color: rgb(147,197,253);
+  }
+  .new-badge {
+    background-color: rgb(55,65,81); 
+    color: rgb(209,213,219);
+  }
+  .rejected-badge {
+    background-color: rgb(127,29,29); 
+    color: rgb(252,165,165);
+  }
+  .approved-badge {
+    background-color: rgb(20,83,45); 
+    color: rgb(134,239,172);
+  }
+  .default-badge {
+    background-color: rgb(113,63,18); 
+    color: rgb(253,224,71);
   }
 }

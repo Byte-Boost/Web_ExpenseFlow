@@ -84,17 +84,6 @@ export default function Home() {
     };
     fetchRefund();
   }, []);
-
-  let badges = {
-    default: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
-    new: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-    rejected: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
-    approved:
-      "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-    "in-process":
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-  };
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -131,11 +120,7 @@ export default function Home() {
                 </span>
                 <span>R${refund.totalValue.toFixed(2)}</span>
               </span>
-              <span
-                className={
-                  "rounded-full px-2 py-0.5 text-xs " + badges["default"]
-                }
-              >
+              <span className="rounded-full px-2 py-0.5 text-xs default-badge">
                 {refund.Project.name}
               </span>
             </div>
@@ -161,9 +146,7 @@ export default function Home() {
 
               <span className="font-medium">Status:</span>
               <span>
-                <span
-                  className={`rounded-full px-2 py-0.5 text-xs font-medium ${badges[refund.status as keyof typeof badges] || "default"}`}
-                >
+                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${(refund.status || "default")+"-badge"}`}>
                   {refund.status}
                 </span>
               </span>

@@ -26,15 +26,6 @@ export default function Home() {
     fetchRefunds();
   }, []);
 
-  let badges = {
-    default: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
-    new: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-    rejected: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
-    approved:
-      "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-    "in-process":
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-  };
   return (
     <main className="flex min-h-screen flex-col bg-gray-100 dark:bg-gray-900">
       <NavBar></NavBar>
@@ -87,13 +78,7 @@ export default function Home() {
                   <p className="flex justify-between font-normal text-gray-700 dark:text-gray-400">
                     <span>
                       <span>#{refund.id}</span>
-                      <span
-                        className={
-                          "me-2 ml-2 rounded-sm px-2.5 py-0.5 text-sm font-medium " +
-                          (badges[refund.status as keyof typeof badges] ||
-                            badges.default)
-                        }
-                      >
+                      <span className={`me-2 ml-2 rounded-sm px-2.5 py-0.5 text-sm font-medium ${(refund.status || "default")+"-badge"}`}>
                         {refund.status}
                       </span>
                     </span>
