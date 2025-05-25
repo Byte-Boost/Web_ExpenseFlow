@@ -50,7 +50,7 @@ export async function createProject(
   return response.data;
 }
 export async function getProjects() {
-  const response = await instance.get<Array<Project>>("project");
+  const response = await instance.get("project");
   return response.data.projects;
 }
 export async function getProject(id: number) {

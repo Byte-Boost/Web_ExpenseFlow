@@ -60,7 +60,7 @@ export default function Home() {
   }, [selectedUser]);
 
   return (
-    <main className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
+    <main className="h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
       <NavBar></NavBar>
 
       <form className="m-4 w-full max-w-xl space-y-4 self-center"
@@ -119,9 +119,9 @@ export default function Home() {
         </section>
       </form>
 
-      <div className="overflow-auto max-h-[70vmin] p-4 fancyScroll">
-        <table className="w-full text-left border-collapse text-black dark:text-gray-400">
-          <thead>
+      <div className="overflow-y-auto max-h-[70vmin] m-8 fancyScroll">
+        <table className="w-full text-left border-collapse text-black dark:text-gray-400 relative">
+          <thead className="sticky top-0 bg-gray-300 dark:bg-gray-700">
             <tr>
               <th className="px-4 py-2">#</th>
               <th className="px-4 py-2">Email</th>

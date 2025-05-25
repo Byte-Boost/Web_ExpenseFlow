@@ -46,6 +46,13 @@ input[type=number] {
   background: #d1d5db; /* Tailwind's gray-300 = #d1d5db */
 }
 
+@-moz-document url-prefix() {
+   .fancyScroll{
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6; /* Tailwind's gray-300 and gray-100 */
+   }
+}
+
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   .fancyScroll::-webkit-scrollbar-track {
@@ -54,5 +61,12 @@ input[type=number] {
 
   .fancyScroll::-webkit-scrollbar-thumb {
     background: #737373; /* Tailwind's neutral-500 = #737373 */
+  }
+  
+  @-moz-document url-prefix() {
+    .fancyScroll{
+      scrollbar-width: thin;
+      scrollbar-color: #737373 #3f3f46;
+    }
   }
 }

@@ -76,7 +76,7 @@ export default function Home() {
           </section>
 
           <section
-            className="fancyScroll mt-8 grid max-h-[40vh] w-fit max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
+            className="fancyScroll mt-8 grid max-h-[40vh] w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 overflow-y-auto p-4"
           >
             {refunds.map((refund) => (
               <div key={refund.id} className="relative max-w-sm">
